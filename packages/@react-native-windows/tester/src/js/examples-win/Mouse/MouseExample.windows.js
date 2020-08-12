@@ -125,6 +125,10 @@ export default class ExampleComponent extends React.Component<
         </View>
         <View>
           <Text>{this.state.pageHover ? 'Mouse over page' : ''}</Text>
+          <Text>{this.state.contentHover ? 'Mouse over content' : ''}</Text>
+          <Text>{this.state.overlayHover ? 'Mouse over overlay content' : ''}</Text>
+          <Text>{this.state.contentChildHover ? 'Mouse over child content' : ''}</Text>
+          <Text>{this.state.overlayChildHover ? 'Mouse over overlay child content' : ''}</Text>
         </View>
       </View>
     );

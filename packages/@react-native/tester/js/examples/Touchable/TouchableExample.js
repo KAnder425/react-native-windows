@@ -33,12 +33,21 @@ const forceTouchAvailable =
 class TouchableHighlightBox extends React.Component<{...}, $FlowFixMeState> {
   state = {
     timesPressed: 0,
+    isHovered: false,
   };
 
   touchableOnPress = () => {
     this.setState({
       timesPressed: this.state.timesPressed + 1,
     });
+  };
+
+  mouseEnter = () => {
+    this.setState({isHovered: true});
+  };
+
+  mouseLeave = () => {
+    this.setState({isHovered: false});
   };
 
   render() {
@@ -59,13 +68,15 @@ class TouchableHighlightBox extends React.Component<{...}, $FlowFixMeState> {
             <Image source={remoteImage} style={styles.image} />
           </TouchableHighlight>
           <TouchableHighlight
-            style={styles.wrapper}
+            style={(this.state.isHovered) ? styles.wrapperHovered : styles.wrapper}
             testID="touchable_highlight_text_button"
             activeOpacity={1}
             underlayColor="rgb(210, 230, 255)"
-            onPress={this.touchableOnPress}>
+            onPress={this.touchableOnPress}
+            onMouseEnter={this.mouseEnter}
+            onMouseLeave={this.mouseLeave}>
             <View style={styles.wrapperCustom}>
-              <Text style={styles.text}>Tap Here For Custom Highlight!</Text>
+              <Text style={styles.text}>Mouseover Here for Highlight - Tap For Custom Highlight!</Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -513,6 +524,10 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     borderRadius: 8,
+  },
+  wrapperHovered: {
+    borderRadius: 8,
+    backgroundColor: '#CCCCCC',
   },
   wrapperCustom: {
     borderRadius: 8,
