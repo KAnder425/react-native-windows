@@ -105,6 +105,16 @@ export type PressabilityConfig = $ReadOnly<{|
   onHoverOut?: ?(event: MouseEvent) => mixed,
 
   /**
+   * Called when the mouse enters the element.
+   */
+  onMouseEnter?: ?(event: MouseEvent) => void,
+
+  /**
+   * Called when the mouse leaves the element.
+   */
+  onMouseLeave?: ?(event: MouseEvent) => void,
+
+  /**
    * Called when a long press gesture has been triggered.
    */
   onLongPress?: ?(event: PressEvent) => mixed,
@@ -606,6 +616,11 @@ export default class Pressability {
                     onHoverIn(event);
                   }
                 }
+              } else {
+                const {onMouseEnter} = this._config;
+                if (onMouseEnter != null) {
+                  onMouseEnter(event);
+                }  
               }
             },
 
@@ -633,6 +648,11 @@ export default class Pressability {
                     onHoverOut(event);
                   }
                 }
+              } else {
+                const {onMouseLeave} = this._config;
+                if (onMouseLeave != null) {
+                  onMouseLeave(event);
+                }  
               }
             },
           };

@@ -226,6 +226,16 @@ class TouchableHighlight extends React.Component<Props, State> {
           this.props.onPressOut(event);
         }
       },
+      onMouseEnter: event => {
+        if (this.props.onMouseEnter != null) {
+          this.props.onMouseEnter(event);
+        }
+      },
+      onMouseLeave: event => {
+        if (this.props.onMouseLeave != null) {
+          this.props.onMouseLeave(event);
+        }
+      },
     };
   }
 
